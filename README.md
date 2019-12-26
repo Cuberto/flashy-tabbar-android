@@ -62,7 +62,7 @@ Step 3 : Update build.gradle inside the application module
 ```
     dependencies {
         //consume library
-        implementation 'com.cuberto.bubbleicontabbarandroid:bubbleicontabbarandroid:1.0.1'
+        implementation 'com.cuberto.flashytabbarandroid.flashytabbarandroid:1.0.0'
         ....
     }
 ```
