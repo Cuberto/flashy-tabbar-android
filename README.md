@@ -161,7 +161,7 @@ Do this to set badge for tab item:
 ```
 
 
-Call tabBubbleAnimator onStart() and onStop() in appropriate activity methods
+Call tabFlashyAnimator onStart() and onStop() in appropriate activity methods
 ```
         @Override
         protected void onStart() {
