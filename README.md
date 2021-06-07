@@ -15,9 +15,9 @@ To run the example project, clone the repo, and run `MainActivity`
 ## Installation
 Add materialdesign library to your project
 
-```
+```groovy
     dependencies {
-        //your project depencies here
+        //your project dependencies here
         implementation "com.google.android.material:material:1.0.0"
     } 
 ```
@@ -33,14 +33,14 @@ Step 1 : Generate a Personal Access Token for GitHub
 - After Generating make sure to copy your new personal access token. You cannot see it again! The only option is to generate a new key.
 
 Step 2: Store your GitHub — Personal Access Token details
-- Create a github.properties file within your root Android project
-- In case of a public repository make sure you add this file to .gitignore for keep the token private
-- Add properties gpr.usr=GITHUB_USERID and gpr.key=PERSONAL_ACCESS_TOKEN
-- Replace GITHUB_USERID with personal / organisation Github User ID and PERSONAL_ACCESS_TOKEN with the token generated in #Step 1
+- Create a `github.properties` file within your root Android project
+- In case of a public repository make sure you add this file to `.gitignore` to keep the token private
+- Add properties `gpr.usr=GITHUB_USERID` and `gpr.key=PERSONAL_ACCESS_TOKEN`
+- Replace `GITHUB_USERID` with personal / organisation Github User ID and `PERSONAL_ACCESS_TOKEN` with the token generated in #Step 1
 
 Step 3 : Update build.gradle inside the application module
-- Add the following code to build.gradle inside the app module that will be using the library
-```
+- Add the following code to `build.gradle` inside the app module that will be using the library
+```groovy
     def githubProperties = new Properties()
     githubProperties.load(new FileInputStream(rootProject.file("github.properties")))
     repositories {
@@ -58,12 +58,11 @@ Step 3 : Update build.gradle inside the application module
         }
     }
 ```
-- inside dependencies of the build.gradle of app module, use the following code
-```
+- inside dependencies of the `build.gradle` of app module, use the following code
+```groovy
     dependencies {
         //consume library
         implementation 'com.cuberto.flashytabbarandroid:flashytabbarandroid:1.0.0'
-        ....
     }
 ```
 Sync project and now you can use flashytabbar library
@@ -71,9 +70,9 @@ Sync project and now you can use flashytabbar library
 #### Android Archive Library
 
 [Download](https://github.com/Cuberto/flashy-tabbar-android/packages/93596) flashytabbarandroid-1.0.0.aar from assets, add it to your app module `libs` package and add this to your dependencies
-```
+```groovy
     dependencies {
-        //your project depencies here
+        //your project dependencies here
         implementation fileTree(dir: 'libs', include: ['*.aar'])
     }
 
@@ -86,9 +85,9 @@ Add `TabFlashyAnimator` and content of res package to your project
 
 ## Usage
 
-Add TabLayout to your xml with tabGravity="fill", tabIndicatorHeight="0dp" and tabMode="fixed"
+Add TabLayout to your xml with `tabGravity="fill"`, `tabIndicatorHeight="0dp"` and `tabMode="fixed"`
 
-```
+```xml
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
@@ -106,7 +105,7 @@ Add TabLayout to your xml with tabGravity="fill", tabIndicatorHeight="0dp" and t
 ```
 
 Create adapter in your Activity, add some fragments and set ViewPager adapter
-```
+```java
         private List<Fragment> mFragmentList = new ArrayList<>();
         private TabFlashyAnimator tabFlashyAnimator;
         private String[] titles = new String[]{"Events", "Highlights", "Search", "Settings"};
@@ -136,33 +135,33 @@ Create adapter in your Activity, add some fragments and set ViewPager adapter
 ```
 
 Setup your TabLayout with ViewPager
-```
+```java
         TabLayout tabLayout = findViewById(R.id.tabLayout);
         tabLayout.setupWithViewPager(viewPager);
 ```
 
 Create TabFlashyAnimator and tabItem as title and image id for each fragment. You can also set text color and size for tab item.
-```
+```java
         tabFlashyAnimator = new TabFlashyAnimator(tabLayout);
         tabFlashyAnimator.addTabItem(titles[0], R.drawable.ic_events);
         tabFlashyAnimator.addTabItem(titles[1], R.drawable.ic_highlights);
         tabFlashyAnimator.addTabItem(titles[2], R.drawable.ic_search);
         tabFlashyAnimator.addTabItem(titles[3], R.drawable.ic_settings, R.color.colorAccent, getResources().getDimension(R.dimen.big_text));
 ```
-Call highlightTab() for 0 position and add tabFlashyAnimator as OnPageChangeListener to ViewPager
-```
+Call `highlightTab()` for 0 position and add tabFlashyAnimator as OnPageChangeListener to ViewPager
+```java
         tabFlashyAnimator.highLightTab(0);
         viewPager.addOnPageChangeListener(tabFlashyAnimator);
 ```
 
 Do this to set badge for tab item:
-```
+```java
         tabFlashyAnimator.setBadge(1, 2);
 ```
 
 
-Call tabFlashyAnimator onStart() and onStop() in appropriate activity methods
-```
+Call tabFlashyAnimator `onStart()` and `onStop()` in appropriate activity methods
+```java
         @Override
         protected void onStart() {
             super.onStart();
